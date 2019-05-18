@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div id="all">
+    <h2> Student Registration Form</h2><br>
+    <hr id="title_sep">
+    {% include 'flash_messages.html' %}
+    <form id="regform" action="{{url_for('stuForm')}}" method="POST">
+   
+        {{ studentForm.csrf_token }}
+        <div>
+            <span><strong>Fill in this form to request help for a course.</strong></span><br>
+        </div>
+        <br>
+        <div class="row1">
+            
+            <span class ="bk"> Please enter your identification number</span><br>
+            {{studentForm.ID(size=10, id="ID")}}
+        </div>
+        <br>
+        <div class="row1">
+            
+            <span class ="bk">Please enter your first name</span><br>
+            {{studentForm.firstname(size=20, id="firstname")}}
+        </div>
+        <br>
+        <div class="row1">
+            <span class ="bk">Please enter your last name</span><label for="name"> </label><br>
+             {{studentForm.lastname(size=20, id="lastname")}}
+        </div>
+        <br>
+        <div class="row2">
+            <span class ="bk" >Please enter your email address</span><label for="email"> </label><br>
+            {{studentForm.email(size=35, id="email")}}
+        </div>
+        <br>
+        
+        
+        
+        
+        <div class="row4">
+            <span class ="bk" >Please enter what courses do you need help with.</span><label for="message"> </label><br>
+             
+             <select>
+                 <option value="">(select option)</option>
+                 <option value="comp2190">COMP2190</option>
+                 <option value="info2180">INFO2180</option>
+                 <option value="comp2211">COMP2211</option>
+                 <option value="comp3161">COMP3161</option>
+                 <option value="comp1161">COMP1161</option>
+             </select>
+             <select>
+                 <option value="">(select option)</option>
+                 <option value="comp2190">COMP2190</option>
+                 <option value="info2180">INFO2180</option>
+                 <option value="comp2211">COMP2211</option>
+                 <option value="comp3161">COMP3161</option>
+                 <option value="comp1161">COMP1161</option>
+             </select><br><br>
+             
+        <br>
+    </div>
+        <br>
+        <section class="formrow2">
+      <h2>Time Sheet:</h2><br>
+      <hr>
+      
+      <span> Please state which day of the week, starting and ending time you will be available.</span><br><br>
+      <div class="combobox" style="font-size:120%; min-width: 120px">
+           <select>
+                 <option value="comp2190">(Select day)</option>
+                 <option value="comp2190">Monday</option>
+                 <option value="info2180">Tuesday</option>
+                 <option value="comp2211">Wednesday</option>
+                 <option value="comp3161">Thursday</option>
+                 <option value="comp1161">Friday</option>
+                 <option value="comp1161">Saturday</option>
+            </select>      
+        
+        <span class="p1">Starting Time:</span><input type="time"> <span class="p1">Ending Time:</span><input type="time">
+        
+      </div><br>
+      <div class="combobox" style="font-size:120%; min-width: 120px">
+           <select>
+                 <option value="comp2190">(Select day)</option>
+                 <option value="comp2190">Monday</option>
+                 <option value="info2180">Tuesday</option>
+                 <option value="comp2211">Wednesday</option>
+                 <option value="comp3161">Thursday</option>
+                 <option value="comp1161">Friday</option>
+                 <option value="comp1161">Saturday</option>
+            </select>      
+        
+        <span class="p1">Starting Time:</span><input type="time"> <span class="p1">Ending Time:</span><input type="time">
+        
+      </div><br>
+      <div class="combobox" style="font-size:120%; min-width: 120px">
+           <select>
+                 <option value="comp2190">(Select day)</option>
+                 <option value="comp2190">Monday</option>
+                 <option value="info2180">Tuesday</option>
+                 <option value="comp2211">Wednesday</option>
+                 <option value="comp3161">Thursday</option>
+                 <option value="comp1161">Friday</option>
+                 <option value="comp1161">Saturday</option>
+            </select>      
+        
+        <span class="p1">Starting Time:</span><input type="time"> <span class="p1">Ending Time:</span><input type="time">
+        
+      </div><br>
+      <div class="combobox" style="font-size:120%; min-width: 120px">
+           <select>
+                 <option value="comp2190">(Select day)</option>
+                 <option value="comp2190">Monday</option>
+                 <option value="info2180">Tuesday</option>
+                 <option value="comp2211">Wednesday</option>
+                 <option value="comp3161">Thursday</option>
+                 <option value="comp1161">Friday</option>
+                 <option value="comp1161">Saturday</option>
+            </select>      
+        
+        <span class="p1">Starting Time:</span><input type="time"> <span class="p1">Ending Time:</span><input type="time">
+        
+      </div><br>
+    </section>
+        <div class="tutButton">
+            <input type="submit" value="Send" id="send-btn1"/>
+            <input type="submit" value="Cancel" id="send-btn1"/>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div id='search-body'>
+    <div id='search-padding'></div>
+    <div id='search-pane'>
+        <div id='search-pane-title'>
+           <i class='fa fa-search' style='font-size:36px'></i>
+        </div>
+        <div id='search-pane-input'>
+            <form>
+                <input class='field-area' type="text" name='firstname' placeholder='First Name'/><br><br>
+                
+                <input class='field-area' type="text" name='lastname' placeholder='Last Name'/><br><br>
+                
+                {{ form.csrf_token }}
+                
+                <button id='submit-tutor'>Search Tutor</button><button id='submit-student'>Search Student</button>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

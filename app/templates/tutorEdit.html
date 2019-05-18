@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div id='editBuffer'></div>
+<div id='tutorEdit'>
+    <form id='tutorEdit_form'>
+        <br>
+        <div id='id_number'>ID Number: TUT01</div><br><br>
+        <input class='edit-field-area' type="text" placeholder="First Name"/>
+        <input class='edit-field-area' type="text" placeholder="Last Name"/><br><br><br>
+        <input class='edit-field-area' type="text" placeholder="Area of Study"/><br><br><br>
+        <input class='edit-field-area' type="text" placeholder="Preference"/><br><br><br>
+        <textarea rows="3" cols="25">Interests</textarea><br><br>
+        
+        <input id='edit_Save' type="submit" value="Save"/>
+    </form>
+</div>
+
+{% endblock %}

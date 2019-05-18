@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block main %}
+    <div class= "home">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="static/css/app.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <br>
+    <br>
+    <ul>
+        <li class = "inb" >
+            <img class="homeimg" src="/static/uploads/help.png">
+        </li>
+        <li id="spesh" class = "inbl" >
+            <h1><img class="homeicon" src="/static/uploads/icon.png">Course Help</h1>
+            <hr id="line">
+            <form id="loginform" action="{{url_for('login')}}" method="POST">
+            <p> Please enter your username and password to enter.</p>
+            
+            <span class ="bk"> Username</span><br>
+            <input type="text" > <br> <br>
+            <span class ="bk"> Password</span><br>
+            <input type="text" > <br> <br>
+        
+            </form>
+            <div id="p2">
+             <form method="get"><button id='submit-tutor' type="submit"  value="tutForm">Login</button>
+             </form><form method="get" action="/"><button id='submit-student' type="submit"  value="stuForm">Cancel</button></form>
+            </div>
+            
+            
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

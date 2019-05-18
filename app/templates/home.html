@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block main %}
+<div class= "home">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="static/css/app.css">
+    
+    <br>
+    <br>
+    <ul>
+        <li class = "inb" >
+            <img class="homeimg" src="/static/uploads/help.png">
+        </li>
+        <li id="spesh" class = "inbl" >
+            <h1><img class="homeicon" src="/static/uploads/icon.png">Course Help</h1>
+            <hr>
+            <p> Get help with any problems you are having with any course, whether it is with assignment, project or just to understand the course content properly.</p>
+            
+             <form method="get" action="tutForm"><button id='submit-tutor' type="submit"  value="tutForm">Register as Tutor</button>
+             </form><form method="get" action="stuForm"><button id='submit-student' type="submit"  value="stuForm">Register as Student</button></form>
+            
+            <form method="get" action="login">
+            <button type="submit" value="login" id="log"> Login </button> 
+           </form>
+            
+        </li>
+    </ul>
+</div>
+
+{% endblock %}
