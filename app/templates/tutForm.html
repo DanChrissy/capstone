@@ -6,127 +6,123 @@
 <h2> Tutor Registration Form</h2><br>
 <hr id="title_sep">
 
-{% for messgae in tutorForm.email.errors %}
+{% for messgae in form.email.errors %}
 <div>{{ message }}</div>
 {% endfor %}
+
 <form id="regform" action="{{url_for('tutForm')}}" method="POST">
    
-     {{ tutorForm.csrf_token }}
+     {{ form.csrf_token }}
     <div>
         <span><strong>Fill in this form to register to be a tutor.</strong></span><br>
     </div>
     <br>
     <div class="row1">
     <span class ="bk">Please enter your identification number</span><label for="ID"> </label><br>
-    {{tutorForm.ID(size=10, id="ID")}}
+    {{form.ID(size=10, id="ID")}}
         
         
     </div>
     <br>
     <div class="row1">
         <span class ="bk">Please enter your first name</span><label for="firstname"> </label><br>
-         {{tutorForm.firstname(size=20, id="firstname")}}
+         {{form.firstname(size=20, id="firstname")}}
         
     </div>
     <br>
     <div class="row1">
         <span class ="bk">Please enter your last name</span><label for="lastname"> </label><br>
-         {{tutorForm.lastname(size=20, id="lastname")}}
+         {{form.lastname(size=20, id="lastname")}}
     </div>
     <br>
     <div class="row2">
         <span class ="bk" >Please enter your email address</span><label for="email"></label><br>
-        {{tutorForm.email(size=35, id="email")}}
+        {{form.email(size=35, id="email")}}
     </div>
     <br>
     <div class="row3">
         <span class ="bk">Please enter your area of study</span><label for="areaofstudy"> </label><br>
-        {{tutorForm.lastname(size=20, id="tutorstudy")}}
+        {{form.areaOfStudy(size=20, id="tutorstudy")}}
     </div>
     <br>
     <div class="row4">
         <span class ="bk" >Please enter what courses do you prefer to tutor.</span><label for="message"> </span></label><br>
-         <select>
-             <option value="comp2190">COMP2190</option>
-             <option value="info2180">INFO2180</option>
-             <option value="comp2211">COMP2211</option>
-             <option value="comp3161">COMP3161</option>
-             <option value="comp1161">COMP1161</option>
-
-         </select>
-         <select>
-             <option value="comp2190">COMP2190</option>
-             <option value="info2180">INFO2180</option>
-             <option value="comp2211">COMP2211</option>
-             <option value="comp3161">COMP3161</option>
-             <option value="comp1161">COMP1161</option>
-         </select>
-         
+        
+            <select name="options1">
+                <option value="">(select option)</option>
+                {% for course in courses %} 
+                <option value="{{course.course_id}}">{{course.course_name}}</option>
+                {% endfor %}
+            </select>
+        
+            <select name="options2">
+                <option value="">(select option)</option>
+                {% for course in courses %}
+                <option value="{{course.course_id}}">{{course.course_name}}</option>
+                {% endfor %}
+            </select><br><br>
         
     </div>
     <br>
     <section class="formrow">
-  <h2>Time Sheet:</h2><br>
-  <hr>
-  <br>
-  <span> Please state which day of the week, starting and ending times you will be avaiable.</span><br><br>
-  <div class="combobox" style="font-size:120%; min-width: 120px">
-       <select>
-             <option value="comp2190">(Select day)</option>
-             <option value="comp2190">Monday</option>
-             <option value="info2180">Tuesday</option>
-             <option value="comp2211">Wednesday</option>
-             <option value="comp3161">Thursday</option>
-             <option value="comp1161">Friday</option>
-             <option value="comp1161">Saturday</option>
-        </select>      
-    
-    <span class="p1">Starting Time:</span><input type="time"> <span class="p1">Ending Time:</span><input type="time">
-    
-  </div><br>
-  <div class="combobox" style="font-size:120%; min-width: 120px">
-       <select>
-             <option value="comp2190">(Select day)</option>
-             <option value="comp2190">Monday</option>
-             <option value="info2180">Tuesday</option>
-             <option value="comp2211">Wednesday</option>
-             <option value="comp3161">Thursday</option>
-             <option value="comp1161">Friday</option>
-             <option value="comp1161">Saturday</option>
-        </select>      
-    
-    <span class="p1">Starting Time:</span><input type="time"> <span class="p1">Ending Time:</span><input type="time">
-    
-  </div><br>
-  <div class="combobox" style="font-size:120%; min-width: 120px">
-       <select>
-             <option value="comp2190">(Select day)</option>
-             <option value="comp2190">Monday</option>
-             <option value="info2180">Tuesday</option>
-             <option value="comp2211">Wednesday</option>
-             <option value="comp3161">Thursday</option>
-             <option value="comp1161">Friday</option>
-             <option value="comp1161">Saturday</option>
-        </select>      
-    
-    <span class="p1">Starting Time:</span><input type="time"> <span class="p1">Ending Time:</span><input type="time">
-    
-  </div><br>
-  <div class="combobox" style="font-size:120%; min-width: 120px">
-       <select>
-             <option value="comp2190">(Select day)</option>
-             <option value="comp2190">Monday</option>
-             <option value="info2180">Tuesday</option>
-             <option value="comp2211">Wednesday</option>
-             <option value="comp3161">Thursday</option>
-             <option value="comp1161">Friday</option>
-             <option value="comp1161">Saturday</option>
-        </select>      
-    
-    <span class="p1">Starting Time:</span><input type="time"> <span class="p1">Ending Time:</span><input type="time">
-    
-  </div><br>
-</section>
+        <h2>Time Sheet:</h2><br>
+        <hr>
+        <br>
+        <span> Please state which day of the week, starting and ending times you will be avaiable.</span><br><br>
+            <div class="combobox" style="font-size:120%; min-width: 120px">
+                
+                    <select name="day1">
+                        <option value="">(Select day)</option>
+                        {% for day in days %}
+                        <option value="{{day.day_id}}">{{day.day_name}}</option>
+                        {% endfor %}
+                    </select>    
+                
+            
+                <span class="p1">Starting Time:</span><input type="time"  name = "start1"> <span class="p1">Ending Time:</span><input type="time"  name = "end1">
+        
+                </div><br>
+                
+                <div class="combobox" style="font-size:120%; min-width: 120px">
+                    
+                        <select name="day2">
+                            <option value="">(Select day)</option>
+                            {% for day in days %}
+                            <option value="{{day.day_id}}">{{day.day_name}}</option>
+                            {% endfor %}
+                        </select>    
+                    
+        
+                    <span class="p1" >Starting Time:</span><input type="time" name = "start2"> <span class="p1">Ending Time:</span><input type="time" name = "end2">
+                </div><br>
+                
+                 <div class="combobox" style="font-size:120%; min-width: 120px">
+                       
+                            <select name="day3">
+                                <option value="">(Select day)</option>
+                                {% for day in days %}
+                                <option value="{{day.day_id}}">{{day.day_name}}</option>
+                                {% endfor %}
+                            </select>    
+                        
+        
+                    <span class="p1">Starting Time:</span><input type="time" name = "start3"> <span class="p1">Ending Time:</span><input type="time" name = "end3">
+                </div><br>
+      
+                 <div class="combobox" style="font-size:120%; min-width: 120px">
+                       
+                            <select name="day4">
+                                <option value="">(Select day)</option>
+                                {% for day in days %}
+                                <option value="{{day.day_id}}">{{day.day_name}}</option>
+                                {% endfor %}
+                            </select>    
+                        
+        
+                    <span class="p1" >Starting Time:</span><input type="time" name = "start4"> <span class="p1" >Ending Time:</span><input type="time" name = "end4">
+        
+                </div><br>
+    </section>
     <div class="tutButton">
         <input type="submit" value="Send" id="send-btn1"/>
         <input type="submit" value="Cancel" id="send-btn1"/>
