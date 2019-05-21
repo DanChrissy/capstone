@@ -200,6 +200,13 @@ def course_list():
     if request.method == 'POST':
         results = tutcourse()
     return render_template('courseList.html', results=results)
+
+@app.route('/stu_tut_list', methods=['POST','GET'])
+def stu_tut_list():
+    if request.method == 'POST':
+        students = db.session.query(StudentPreference).all()
+        tutors = db.session.query(TutorPreference).all()
+    return render_template('stu_tut_list.html', students=students, tutors=tutors)
         
 @app.route('/search')
 def search():

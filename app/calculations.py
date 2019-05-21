@@ -137,8 +137,42 @@ def MatchStudentTutor():
 def tutcourse():
     tutors = db.session.query(Tutor.tutor_id).all()
     course = db.session.query(Course.course_id).all()
+    course_name = db.session.query(Course.course_name).all()
     searches = []
-    r = []
+    course_list_id = []
+    course_list_name = []
+    course_list_count=[]
+    course_list_match = []
+    course_list = []
+    
+    def courses():
+    
+        def courses_id():
+            for c in course:
+                course_list_id.append(c.course_id)
+            return course_list_id
+        
+        def courses_name():
+            for c in course_name:
+                course_list_name.append(c.course_name)
+            return course_list_name
+        
+        i = courses_id()
+        n = courses_name()
+        
+        def courses_count(list_ids):
+            for l in list_ids:
+                count = db.session.query(CourseCount.count_tutors).filter_by(course_id = l).first()
+                course_list_count.append(count.count_tutors)
+            return course_list_count
+        
+        c = courses_count(i)
+        
+        for ln in range(len(i)):
+            course_list.append([str(i[ln]),str(n[ln]), c[ln]])
+        
+        f = course_list
+        return f
     
     def get_prefs(tut_id):
         pref_1=[]
@@ -149,72 +183,61 @@ def tutcourse():
             pref_1.append(pref1.preference_1)
         for pref2 in prefs2:
             pref_2.append(pref2.preference_2)
-        
+        '''
         area = db.session.query(Tutor.area_study).filter_by(tutor_id = tut_id).all()
         for a in area:
             area_name = a.area_study
         area_id = db.session.query(Course.course_id).filter(Course.course_name.ilike("%area_name%")).first()
-        areaId = area_id.course_id
+        areaId = area_id.course_id'''
         search = [str(pref_1[0]),str(pref_2[0])]
         return search
     
-    for t in tutors:
-        searches.append(t.tutor_id)
-    for s in searches:
-        listing = get_prefs(s)
-        r.append(listing)
-    return r
-    '''
-        pref1 = listing[0]
-        pref2 = listing[1]
-        pref3 = listing[2]
-
-        match_tut(pref1,pref2,pref3,t)
-        '''
-        
-    '''
-    def match_tut(option1,option2,option3,id_number):
-        for cid in course:
-            count = db.session.query(CourseCount.count_tutors).filter_by(course_id = cid).all()
-            match1 = db.session.query(CourseTutorMatch.tutor_id_1).filter_by(course_id = cid).all()
-            name = db.session.query(Course.course_name).filter_by(course_id = cid)
-        
-            if (option1 == cid and count != 2):
+    def match_tut(option1,option2,id_number,c):
+        for cid in c:
+            if (option1 == cid[0] and cid[2] != 2):
                 pick = option1
-                update_count = db.session.query(CourseCount).filter_by(course_id = pick)
-                update_count.count_tutors += 1
+                update_count = db.session.query(CourseCount.count_tutors).filter_by(course_id = pick).first()
+                up_count = update_count.count_tutors + 1
+                '''up_count = db.session.merge(update_count)
                 db.session.commit()
                 
-                if (match1 == ""):
-                    match = CourseTutorMatch(course_id=pick, tutor_id_1 = id_number, tutor_id_2 = "")
-                    db.session.add(match)
-                    db.session.commit()
-                    return
-                else: 
-                    update_match = db.session.query(CourseTutorMatch).filter_by(course_id = pick).first()
+                m_id = db.session.query(CourseTutorMatch.course_id).filter_by(course_id = cid[0]).first()
+                if m_id != None:
+                    match_id = m_id.course_id
+                    update_match = db.session.query(CourseTutorMatch).filter_by(course_id = cid[0]).first()
                     update_match.tutor_id_2 = id_number
                     db.session.commit()
                     return
-                
-                
-            elif ((option1 != cid) and (option2 == cid) and (count != 2)):
+                else:
+                    match = CourseTutorMatch(course_id=pick, tutor_id_1 = id_number, tutor_id_2 = "")
+                    db.session.add(match)
+                    db.session.commit()
+                    return'''
+                    
+            elif ((option1 != cid[0]) and (option2 == cid[0]) and (cid[2] != 2)):
                 pick = option2
-                update_count = db.session.query(CourseCount).filter_by(course_id = pick)
-                update_count.count_tutors += 1
+                update_count = db.session.query(CourseCount.count_tutors).filter_by(course_id = pick).first()
+                up_count = update_count.count_tutors + 1
+                '''up_count = db.session.merge(update_count)
                 db.session.commit()
                 
-                if (match1 == ""):
-                    match = CourseTutorMatch(course_id=pick, tutor_id_1 = id_number, tutor_id_2 = "")
-                    db.session.add(match)
-                    db.session.commit()
-                    return
-                else: 
-                    update_match = db.session.query(CourseTutorMatch).filter_by(course_id = pick).first()
+                m_id = db.session.query(CourseTutorMatch.course_id).filter_by(course_id = cid[0]).first()
+                if m_id != None:
+                    match_id = m_id.course_id
+                    update_match = db.session.query(CourseTutorMatch).filter_by(course_id = cid[0]).first()
                     update_match.tutor_id_2 = id_number
                     db.session.commit()
                     return
+                else:
+                    match = CourseTutorMatch(course_id=pick, tutor_id_1 = id_number, tutor_id_2 = "")
+                    db.session.add(match)
+                    db.session.commit()
+                    return'''
+            else:
+                print("Nothing")
+        return  [pick, up_count]
                 
-            elif ((option1 != cid) and (option2 != cid) and (option3 == cid) and (count != 2)):
+        '''elif ((option1 != cid[0]) and (option2 != cid) and (option3 == cid) and (count != 2)):
                 pick = option3
                 update_count = db.session.query(CourseCount).filter_by(course_id = pick)
                 update_count.count_tutors += 1
@@ -229,10 +252,25 @@ def tutcourse():
                         update_match = db.session.query(CourseTutorMatch).filter_by(course_id = pick).first()
                         update_match.tutor_id_2 = id_number
                         db.session.commit()
-                        return
-            else:
-                print("Nothing")
-            '''
+                        return'''
+                
+    picks = []
+    course_listing = courses()
+    for t in tutors:
+        searches.append(t.tutor_id)
+    for s in searches:
+        listing = get_prefs(s)
+        pref1 = listing[0]
+        pref2 = listing[1]
+        #pref3 = listing[2]
+
+        m = match_tut(pref1,pref2,t,course_listing)
+        picks.append([s,m])
+    return picks
+    
+
+    
+        
     
     
 

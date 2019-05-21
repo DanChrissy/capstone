@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block main %}
+<div class= "home">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="static/css/app.css">
+    
+    <br>
+    <br>
+        
+    <h5>Students Informations</h5>
+    <ul>
+        {% for s in students %}
+            <li>Id:{{s.student_id}} Choices:{{s.stucourse_id_1}} {{s.stucourse_id_2}} </li>
+        {% endfor %}
+        
+    </ul>
+    
+    
+    <h5>Tutors Information</h5>
+    <ul>
+        {% for t in tutors %}
+            <li>Id: {{t.tutor_id}} Choices:{{t.preference_1}} {{t.preference_2}} </li>
+        {% endfor %}
+        
+    </ul>
+    
+</div>
+
+{% endblock %}

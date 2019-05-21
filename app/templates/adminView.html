@@ -11,7 +11,12 @@
         
         <div >
           <li id="spesh2"> 
-          <h3>Generate Matches</h3>
+          <!-- <form action="{{url_for('course_list')}}" method='POST'>
+                 <input type="submit" id="gen_tut" value ="Generate Course Tutor Matches">
+             </form><br><br>
+           <form action="" method="POST"> <input type "submit" id="gen_tutStu" value="Generate Tutor student matches">
+           </form>-->
+             
           </li> 
           
           
@@ -22,10 +27,18 @@
              <!--<form action="{{url_for('course_tutor')}}" method='POST'>
                  <input type="submit" id="gen_tut" value ="Generate Course Tutor Matches">
              </form>-->
+             
              <form action="{{url_for('course_list')}}" method='POST'>
                  <input type="submit" id="gen_tut" value ="Generate Course Tutor Matches">
              </form>
              
+             <form action="{{url_for('stu_tut_list')}}" method='POST'>
+                 <input type="submit" id="stu_tut" value ="Generate Tutor and Student Lists">
+             </form>
+             
+            
+            <form action=" " method ="POST"> <input type "submit" id="stuRecord" value="Students Record"></form><br>
+            <form action=" " method ="POST"> <input type "submit" id="tutRecord" value="Tutors Record"></form><br>
         </li> 
             
         </div>    

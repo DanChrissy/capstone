@@ -9,13 +9,13 @@
     <br>
     <br>
     <ul>
-        <!--
-        {% for m in matches %}
+        
+        <!--{% for m in matches %}
             <li>{{m.course_id}} : {{m.tutor_id_1}} {{m.tutor_id_2}}</li>
-        {% endfor %}
-        -->
+        {% endfor %}-->
+        
         {% for m in results %}
-            <li>Prefs and Area:{{m}}  </li>
+            <li>Tutor:{{m[0]}}  Course and Count: {{m[1]}}</li>
         {% endfor %}
     </ul>
     
