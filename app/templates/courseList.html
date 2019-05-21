@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block main %}
+    <div class= "home">
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="static/css/app.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <br>
+    <br>
+    <ul>
+        <!--
+        {% for m in matches %}
+            <li>{{m.course_id}} : {{m.tutor_id_1}} {{m.tutor_id_2}}</li>
+        {% endfor %}
+        -->
+        {% for m in results %}
+            <li>Tutor:{{m[0]}} Courses:{{m[1]}} </li>
+        {% endfor %}
+    </ul>
+    
+</div>
+{% endblock %}
