@@ -77,3 +77,71 @@ def tutCourse():
                 db.session.commit()
                 return redirect(url_for('home'), name)'''
 
+<<<<<<< HEAD
+=======
+def Schedule():
+   
+    for m in matches:
+        tutor1 = m.tutor_id_1
+        tutor2 = m.tutor_id_2
+        tut1_day = db.session.query(TutorAvailability.day_id).filter_by(tutor_id = tutor1)
+        tut2_day = db.session.query(TutorAvailability.day_id).filter_by(tutor_id = tutor2)
+        tut1_start = db.session.query(TutorAvailability.start_time).filter_by(tutor_id = tutor1)
+        tut2_start = db.session.query(TutorAvailability.start_time).filter_by(tutor_id = tutor2)
+        
+        result_query = times(m)
+        
+        def times(tutor_m):
+            tut_day = db.session.queery
+        
+        
+        for s in tut1_start:
+            start = int(s[:2])
+            
+            if tut1_day == 'Mon':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            elif tut1_day == 'Tues':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            elif tut1_day == 'Wed':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            elif tut1_day == 'Thur':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            elif tut1_day == 'Fri':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            else:
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            
+            
+            for q in query:
+                if start == q.time:
+                    match = TutorRoom(tutor_id = tutor1, room_id = q.room_id)
+                    db.session.add(match)
+                    db.session.commit()
+                    break
+                
+                
+        for s in tut2_start:
+            start = int(s[:2])
+            
+            if tut2_day == 'Mon':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            elif tut2_day == 'Tues':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            elif tut2_day == 'Wed':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            elif tut2_day == 'Thur':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            elif tut2_day == 'Fri':
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            else:
+                query = db.session.query(MondayRoomAvailability).filter_by(status = "")
+            
+            for q in query:
+                if start == q.time:
+                    match = TutorRoom(tutor_id = tutor2, room_id = q.room_id)
+                    db.session.add(match)
+                    db.session.commit()
+                    break
+
+
+>>>>>>> e675ced5d8d57d424b638066818e9db894203063
