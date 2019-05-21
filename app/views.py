@@ -112,8 +112,6 @@ def login():
     
         if (user == "admin" and password == "admin"):
             return(redirect(url_for('adminView')))
-        else:
-            return(redirect(url_for('home')))
         
     return render_template('login.html',login = login)
 

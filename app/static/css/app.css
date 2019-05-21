@@ -31,8 +31,7 @@ background-repeat: no-repeat;
 }
 #p2{
     position: relative;
-    bottom:48px;
-    left:64px;
+
 }
 #loginform{
     position:relative;
@@ -139,6 +138,7 @@ body{
     background-color: white;
     color: #ee4466;
     border: none;
+    bottom:50;
 }
 
 
@@ -146,7 +146,7 @@ body{
     margin-left: 15px;
     border-radius: 25px 0px 0px 25px;
     margin-right:0;
-    position: relative;
+    /*position: relative;*/
     right:150px;
 }
 input, select{
@@ -157,9 +157,9 @@ input, select{
     margin-right: 10px;
     border-radius: 0px 25px 25px 0px;
     margin-left:0;
-    position: relative;
+    /*position: relative;*/
     left:10px;
-    bottom:50px;
+    
 }
 #log{
     position: relative;
@@ -323,7 +323,7 @@ input, select{
     display: inline-block;
     text-align: center;
     width: 450px;
-    height: 300px;
+    height: 350px;
     margin: 10px;
     border-width: 1px;
     border-style: solid;
