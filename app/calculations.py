@@ -135,18 +135,44 @@ def MatchStudentTutor():
             return tut_stu_match
 
 def tutcourse():
-    tutors = Tutor.query.all()
+    tutors = db.session.query(Tutor.tutor_id).all()
     course = db.session.query(Course.course_id).all()
+    searches = []
+    r = []
     
     def get_prefs(tut_id):
-        prefs = db.session.query(TutorPreference.preference_1, TutorPreference.preference_2).filter_by(tutor_id = tut_id).all()
-        for pref in prefs:
-            pref_course = [pref.preference_1, pref.preference_2]
+        pref_1=[]
+        pref_2=[]
+        prefs1 = db.session.query(TutorPreference.preference_1).filter_by(tutor_id = tut_id).all()
+        prefs2 =db.session.query(TutorPreference.preference_2).filter_by(tutor_id = tut_id).all()
+        for pref1 in prefs1:
+            pref_1.append(pref1.preference_1)
+        for pref2 in prefs2:
+            pref_2.append(pref2.preference_2)
+        
         area = db.session.query(Tutor.area_study).filter_by(tutor_id = tut_id).all()
-        area_id = db.session.query(Course.course_id).filter(Course.course_name.ilike("%area%")).first()
-        search = [prefs[0],prefs[1], area_id]
+        for a in area:
+            area_name = a.area_study
+        area_id = db.session.query(Course.course_id).filter(Course.course_name.ilike("%area_name%")).first()
+        areaId = area_id.course_id
+        search = [str(pref_1[0]),str(pref_2[0])]
         return search
     
+    for t in tutors:
+        searches.append(t.tutor_id)
+    for s in searches:
+        listing = get_prefs(s)
+        r.append(listing)
+    return r
+    '''
+        pref1 = listing[0]
+        pref2 = listing[1]
+        pref3 = listing[2]
+
+        match_tut(pref1,pref2,pref3,t)
+        '''
+        
+    '''
     def match_tut(option1,option2,option3,id_number):
         for cid in course:
             count = db.session.query(CourseCount.count_tutors).filter_by(course_id = cid).all()
@@ -206,15 +232,10 @@ def tutcourse():
                         return
             else:
                 print("Nothing")
-            
+            '''
     
-    for t in tutors:
-        listing = get_prefs(t)
-        pref1 = listing[0]
-        pref2 = listing[1]
-        pref3 = listing[2]
-        
-        match_tut(pref1,pref2,pref3,t)
+    
+
     
     
             
